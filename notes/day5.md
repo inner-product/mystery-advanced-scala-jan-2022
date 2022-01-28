@@ -128,8 +128,8 @@ For the library user:
 Type classes use implicits -> they are pattern build from implicit values and parameters.
 
 Type class : Trait
-Type class instance : implicit value
-Type class usage : implicit parameter
+Type class instance : implicit value implementing the trait
+Type class usage : implicit parameter requiring an instance of the trait
 
 Type class is an interface or description of some functionality that we're going to provide for a type.
 
