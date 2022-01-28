@@ -23,6 +23,7 @@ Metacognition
 Cats stuff
 - monoid, semigroup, applicative, monad
 - State monad
+- Cats Effect
 
 Performance
 - mutation vs copying

@@ -156,7 +156,7 @@ To fix them:
 
 2. Pattern matching 
 
-Pattern for GADTs need be of the form
+Pattern for GADTs need to be of the form
 
 ```scala
 case m: Merge[a, b] => ???
