@@ -124,3 +124,42 @@ For the library user:
 
 
 ## Type Classes
+
+Type classes use implicits -> they are pattern build from implicit values and parameters.
+
+Type class : Trait
+Type class instance : implicit value
+Type class usage : implicit parameter
+
+Type class is an interface or description of some functionality that we're going to provide for a type.
+
+E.g. 
+
+```scala
+// There is a type class called Semigroup
+// If we implement it for some type A we must provide the method combine
+trait Semigroup[A] {
+  def combine(x: A, y: A): A
+}
+```
+
+Type class instances are implementations of a type class (i.e. implementations of an interface) for a specific type. They are implicit values; they are separate from the type for which they are defined.
+
+```scala
+final case class Apples(count: Int) extends Semigroup[Apples] // WRONG!
+
+final case class Apples(count: Int)
+object Apples {
+  implicit val applesSemigroup: Semigroup[Apples] =  // CORRECT!
+    new Semigroup[Apples] { ... }
+}
+```
+
+```scala
+def combine[A](x: A, y: A)(implicit s: Semigroup[A]): A =
+  s.combine(x, y)
+  
+combine(Apples(42), Apples(666)) // Looks in the companion object and finds the type class instance
+```
+
+This allows us to define functionality (type class instances; implementations of the interface) separately from the type for which that functionality is defined.
